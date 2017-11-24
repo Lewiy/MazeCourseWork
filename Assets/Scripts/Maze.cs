@@ -139,7 +139,16 @@ public class Maze : MonoBehaviour {
 	private void CreatePassageInSameRoom(MazeCell cell, MazeCell otherCell, MazeDirection direction) { 
 		MazePassage passage = Instantiate(passagePrefab) as MazePassage;
 		passage.Initialize(cell, otherCell, direction);
-	}
+        passage = Instantiate(passagePrefab) as MazePassage;
+        passage.Initialize(otherCell, cell, direction.GetOpposite());
+        if (cell.room != otherCell.room)
+        {
+            MazeRoom roomToAssimilate = otherCell.room;
+            cell.room.Assimilate(roomToAssimilate);
+            rooms.Remove(roomToAssimilate);
+            Destroy(roomToAssimilate);
+        }
+    }
 
 
 	private void CreateWall (MazeCell cell, MazeCell otherCell, MazeDirection direction) {		
