@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0a772f71d1b8c497fa708001769c9cda
+timeCreated: 1440667263
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - cellPrefab: {instanceID: 0}
+  - passagePrefab: {instanceID: 0}
+  - doorPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
