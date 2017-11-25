@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour {
 	public Maze mazePrefab;
@@ -22,15 +23,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator BeginGame() {
-        Camera.main.rect = new Rect(0f, 0f, 1f, 1f);
+        Camera.main.clearFlags = CameraClearFlags.Skybox;
         mazeInstance = Instantiate(mazePrefab) as Maze;
-        //playerInstance = Instantiate(playerPrefab) as Player;
-        // playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-		yield return StartCoroutine (mazeInstance.Generate());
-        players = GameObject.FindGameObjectsWithTag("Player");
-         playerInstance = (Player)players[0];
+        yield return StartCoroutine (mazeInstance.Generate());
+        Object prefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Player.prefab", typeof(GameObject));
+        playerInstance = Instantiate(prefab) as Player;
+        Camera.main.clearFlags = CameraClearFlags.Depth;
         Camera.main.rect = new Rect(0f, 0f, 0.5f, 0.5f);
-        //StartCoroutine(mazeInstance.Generate());
+       
 
     }
 	

@@ -8,7 +8,9 @@ public class Player : MonoBehaviour {
 	public void SetLocation(MazeCell cell) {
 		currentCell = cell;
 		transform.localPosition = cell.transform.localPosition;
-	}
+      //  transform.localPosition = new Vector3();
+
+    }
 
 	private void Move(MazeDirection direction) {
 		MazeCellEdge edge = currentCell.GetEdge(direction);
