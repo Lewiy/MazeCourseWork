@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour {
 
 	public Player playerPrefab;
 	private Player playerInstance;
-                                                                                                                         
+    private GameObject[] players;                                                                                                    
 	// Use this for initialization
 	private void Start () {
+        //playerPrefab = new Player();
 		StartCoroutine(BeginGame());	
 	}
 	
@@ -21,12 +22,17 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator BeginGame() {
-		mazeInstance = Instantiate(mazePrefab) as Maze;
+        Camera.main.rect = new Rect(0f, 0f, 1f, 1f);
+        mazeInstance = Instantiate(mazePrefab) as Maze;
+        //playerInstance = Instantiate(playerPrefab) as Player;
+        // playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 		yield return StartCoroutine (mazeInstance.Generate());
-		playerInstance = Instantiate(playerPrefab) as Player;
-		playerInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-		StartCoroutine(mazeInstance.Generate());
-	}
+        players = GameObject.FindGameObjectsWithTag("Player");
+         playerInstance = (Player)players[0];
+        Camera.main.rect = new Rect(0f, 0f, 0.5f, 0.5f);
+        //StartCoroutine(mazeInstance.Generate());
+
+    }
 	
 	private void RestartGame() {
 		
