@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-//using System.Collections;
 
 public abstract class MazeCellEdge : MonoBehaviour {
+
 	public MazeCell cell, otherCell;
 
 	public MazeDirection direction;
-
 
 	public virtual void Initialize (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		this.cell = cell;
@@ -17,14 +16,7 @@ public abstract class MazeCellEdge : MonoBehaviour {
 		transform.localRotation = direction.ToRotation();
 	}
 
+	public virtual void OnPlayerEntered () {}
 
-//	// Use this for initialization
-//	void Start () {
-//	
-//	}
-//	
-//	// Update is called once per frame
-//	void Update () {
-//	
-//	}
+	public virtual void OnPlayerExited () {}
 }

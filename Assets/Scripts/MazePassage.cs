@@ -1,6 +1,3 @@
 ﻿using UnityEngine;
-//using System.Collections;
 
-public class MazePassage : MazeCellEdge {
-
-}
+public class MazePassage : MazeCellEdge {}

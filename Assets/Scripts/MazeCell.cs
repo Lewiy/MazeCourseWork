@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-//using System.Collections;
 
 public class MazeCell : MonoBehaviour {
 
@@ -19,7 +18,7 @@ public class MazeCell : MonoBehaviour {
 
 	public MazeDirection RandomUninitializedDirection {
 		get {
-			int skips = Random.Range(0, (MazeDirections.Count - initializedEdgeCount));
+			int skips = Random.Range(0, MazeDirections.Count - initializedEdgeCount);
 			for (int i = 0; i < MazeDirections.Count; i++) {
 				if (edges[i] == null) {
 					if (skips == 0) {
@@ -32,11 +31,11 @@ public class MazeCell : MonoBehaviour {
 		}
 	}
 
-	public void Initialize(MazeRoom room) {
+	public void Initialize (MazeRoom room) {
 		room.Add(this);
 		transform.GetChild(0).GetComponent<Renderer>().material = room.settings.floorMaterial;
 	}
-	
+
 	public MazeCellEdge GetEdge (MazeDirection direction) {
 		return edges[(int)direction];
 	}
@@ -46,6 +45,25 @@ public class MazeCell : MonoBehaviour {
 		initializedEdgeCount += 1;
 	}
 
+	public void Show () {
+		gameObject.SetActive(true);
+	}
 
+	public void Hide () {
+		gameObject.SetActive(false);
+	}
 
+	public void OnPlayerEntered () {
+		room.Show();
+		for (int i = 0; i < edges.Length; i++) {
+			edges[i].OnPlayerEntered();
+		}
+	}
+	
+	public void OnPlayerExited () {
+		room.Hide();
+		for (int i = 0; i < edges.Length; i++) {
+			edges[i].OnPlayerExited();
+		}
+	}
 }
