@@ -5,7 +5,7 @@ public class MazeRoom : ScriptableObject {
 
 	public int settingsIndex;
 
-	public MazeRoomSettings settings;
+	 public MazeRoomSettings settings;
 	
 	private List<MazeCell> cells = new List<MazeCell>();
 

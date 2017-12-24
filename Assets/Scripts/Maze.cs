@@ -113,7 +113,7 @@ public class Maze : MonoBehaviour {
 
 	private void CreatePassageInSameRoom (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
 		MazePassage passage = Instantiate(passagePrefab) as MazePassage;
-		passage.Initialize(cell, otherCell, direction);
+	    	passage.Initialize(cell, otherCell, direction);
 		passage = Instantiate(passagePrefab) as MazePassage;
 		passage.Initialize(otherCell, cell, direction.GetOpposite());
 		if (cell.room != otherCell.room) {
@@ -135,7 +135,7 @@ public class Maze : MonoBehaviour {
 
 	private MazeRoom CreateRoom (int indexToExclude) {
 		MazeRoom newRoom = ScriptableObject.CreateInstance<MazeRoom>();
-		newRoom.settingsIndex = Random.Range(0, roomSettings.Length);
+		 newRoom.settingsIndex = Random.Range(0, roomSettings.Length);
 		if (newRoom.settingsIndex == indexToExclude) {
 			newRoom.settingsIndex = (newRoom.settingsIndex + 1) % roomSettings.Length;
 		}
